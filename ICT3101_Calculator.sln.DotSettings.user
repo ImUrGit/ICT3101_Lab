@@ -1,0 +1,8 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6224a006_002D2678_002D46fe_002D8b7d_002Dd9bca9cca7f3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;ICT3101_Calculator.UnitTests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Or&gt;
+    &lt;Project Location="/Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator.UnitTests" Presentation="&amp;lt;ICT3101_Calculator.UnitTests&amp;gt;" /&gt;
+    &lt;ProjectFile&gt;99C74EA1-15A8-4EAC-B146-1A94E93BB0DC/d:Features/f:UsingCalculatorAddition.feature.cs&lt;/ProjectFile&gt;
+    &lt;Project Location="/Users/alainpierre/Projects/ICT3101_Calculator/SpecFlowCalculatorTests" Presentation="&amp;lt;SpecFlowCalculatorTests&amp;gt;" /&gt;
+  &lt;/Or&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
