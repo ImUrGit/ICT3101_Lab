@@ -12,3 +12,5 @@ total number of defects over the size so that I can understand the defect densit
 User Story 2: 
 As a system administrator, I want to calculate the system's availability by inputting MTBF and Mean Time to 
 Repair (MTTR) into a calculator so that I can assess how much time the system is expected to be available.
+
+Testing
