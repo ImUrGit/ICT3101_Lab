@@ -1,0 +1,14 @@
+Epic: 
+As a group of system quality engineers, we want to enhance our command-line calculator to calculate quality metrics 
+such as defect density, total number of Shipped Source Instructions (SSI), and metrics using the Musa Logarithmic model. 
+This will allow us to evaluate system performance across successive releases and predict failures more accurately, 
+using a single calculator command.
+
+User Story Examples:
+User Story 1: 
+As a system administrator, I want to calculate the Defect density using a calculator by inputting 
+total number of defects over the size so that I can understand the defect density of my system.
+
+User Story 2: 
+As a system administrator, I want to calculate the system's availability by inputting MTBF and Mean Time to 
+Repair (MTTR) into a calculator so that I can assess how much time the system is expected to be available.
