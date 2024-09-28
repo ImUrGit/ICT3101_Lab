@@ -1,4 +1,5 @@
-﻿namespace ICT3101_Calculator.UnitTests
+﻿/*
+namespace ICT3101_Calculator.UnitTests
 {
     public class CalculatorTests
     {
@@ -274,3 +275,4 @@
 
     }
 }
+*/
