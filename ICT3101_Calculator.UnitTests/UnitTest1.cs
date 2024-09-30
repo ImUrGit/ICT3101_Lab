@@ -1,17 +1,43 @@
-﻿/*
-namespace ICT3101_Calculator.UnitTests
+﻿namespace ICT3101_Calculator.UnitTests
 {
     public class CalculatorTests
     {
         private Calculator _calculator;
+        private string originalPath = "/Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator/MagicNumbers.txt";
+        private string backupPath;
 
         [SetUp]
         public void Setup()
         {
             // Arrange
             _calculator = new Calculator();
+            backupPath = originalPath + ".bak";
+
+            // Backup the original file before each test
+            if (!File.Exists(backupPath))
+            {
+                File.Copy(originalPath, backupPath); // Backup the file if not already backed up
+            }
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            // Restore the original file after each test
+            if (File.Exists(backupPath))
+            {
+                if (File.Exists(originalPath))
+                {
+                    File.Delete(originalPath); // Delete the modified file
+                }
+                File.Move(backupPath, originalPath); // Restore the backup
+            }
+        }
+
+        // Previously Commented-Out Tests (re-commented)
+        // -------------------------------
+
+        /*
         // Addition Test
         [Test]
         public void Add_WhenAddingTwoNumbers_ResultEqualToSum()
@@ -58,7 +84,6 @@ namespace ICT3101_Calculator.UnitTests
         {
             // Act
             double result = _calculator.Divide(20, 0);
-
             // Assert
             Assert.That(double.IsPositiveInfinity(result), Is.True);
         }
@@ -103,176 +128,67 @@ namespace ICT3101_Calculator.UnitTests
                 Assert.That(result, Is.EqualTo(0));
             }
         }
+        */
 
-        // Test for Factorial of a Positive Number
-        [Test]
-        public void Factorial_WhenPositiveNumberGiven_ShouldReturnFactorial()
-        {
-            // Act
-            int result = _calculator.Factorial(5);
-            // Assert
-            Assert.That(result, Is.EqualTo(120)); // 5! = 120
-        }
+        // Lab 4 Tests
+        // -------------------------------
 
-        // Test for Factorial of Zero
+        // Positive Test Case: Valid Input
         [Test]
-        public void Factorial_WhenZeroGiven_ShouldReturnOne()
+        public void GenMagicNum_WithValidInput_ReturnsCorrectMagicNumber()
         {
-            // Act
-            int result = _calculator.Factorial(0);
-            // Assert
-            Assert.That(result, Is.EqualTo(1)); // 0! = 1
+            IFileReader fileReader = new FileReader();
+            
+            double result = _calculator.GenMagicNum(1, fileReader);
+            
+            Assert.That(result, Is.EqualTo(96));
         }
 
-        // Test for Negative Input (should throw ArgumentException)
+        // Negative Test Case: Out of Bounds Input
         [Test]
-        public void Factorial_WhenNegativeNumberGiven_ShouldThrowArgumentException()
+        public void GenMagicNum_WithOutOfBoundsInput_ReturnsZero()
         {
-            // Assert
-            Assert.That(() => _calculator.Factorial(-5), Throws.ArgumentException);
+            IFileReader fileReader = new FileReader();
+            
+            double result = _calculator.GenMagicNum(10, fileReader); 
+            
+            Assert.That(result, Is.EqualTo(0)); 
         }
 
-        // Test for Area of Triangle with Positive Base and Height
+        // Exceptional Test Case: File Missing
         [Test]
-        public void AreaOfTriangle_WithPositiveBaseAndHeight_ShouldReturnCorrectArea()
+        public void GenMagicNum_FileMissing_ThrowsFileNotFoundException()
         {
-            // Act
-            double result = _calculator.AreaOfTriangle(10, 5);
-            // Assert
-            Assert.That(result, Is.EqualTo(25)); // (1/2) * 10 * 5 = 25
+            IFileReader fileReader = new FileReader();
+            
+            // If backup file exists, delete it
+            if (File.Exists(backupPath))
+            {
+                File.Delete(backupPath);
+            }
+
+            // Temporarily move the file to simulate the missing file scenario
+            File.Move(originalPath, backupPath);
+            
+            Assert.Throws<FileNotFoundException>(() => _calculator.GenMagicNum(1, fileReader));
+
+            // Restore the file after the test (Handled by TearDown)
         }
 
-        // Test for Area of Triangle with Zero Base or Height
+        // Exceptional Case: Invalid Content in File
         [Test]
-        public void AreaOfTriangle_WithZeroBaseOrHeight_ShouldReturnZero()
+        public void GenMagicNum_WithInvalidContent_ThrowsFormatException()
         {
-            // Act
-            double result = _calculator.AreaOfTriangle(0, 5);
-            // Assert
-            Assert.That(result, Is.EqualTo(0));
+            IFileReader fileReader = new FileReader();
+            
+            // Write the invalid content to the file
+            string invalidContent = "12\ninvalid\n3\n";
+            File.WriteAllText(originalPath, invalidContent);
 
-            // Act
-            result = _calculator.AreaOfTriangle(10, 0);
-            // Assert
-            Assert.That(result, Is.EqualTo(0));
-        }
+            // Act & Assert
+            Assert.Throws<FormatException>(() => _calculator.GenMagicNum(1, fileReader));
 
-        // Test for Area of Triangle with Negative Base or Height
-        [Test]
-        public void AreaOfTriangle_WithNegativeBaseOrHeight_ShouldThrowArgumentException()
-        {
-            // Assert
-            Assert.That(() => _calculator.AreaOfTriangle(-10, 5), Throws.ArgumentException);
-            Assert.That(() => _calculator.AreaOfTriangle(10, -5), Throws.ArgumentException);
+            // File is restored after the test by TearDown
         }
-
-        // Test for Area of Circle with Positive Radius
-        [Test]
-        public void AreaOfCircle_WithPositiveRadius_ShouldReturnCorrectArea()
-        {
-            // Act
-            double result = _calculator.AreaOfCircle(10); // radius = 10
-            // Assert
-            Assert.That(result, Is.EqualTo(Math.PI * 100).Within(0.001)); // π * 10^2 = 314.159...
-        }
-
-        // Test for Area of Circle with Zero Radius
-        [Test]
-        public void AreaOfCircle_WithZeroRadius_ShouldReturnZero()
-        {
-            // Act
-            double result = _calculator.AreaOfCircle(0); // radius = 0
-            // Assert
-            Assert.That(result, Is.EqualTo(0)); // The area should be 0
-        }
-
-        // Test for Area of Circle with Negative Radius
-        [Test]
-        public void AreaOfCircle_WithNegativeRadius_ShouldThrowArgumentException()
-        {
-            // Assert
-            Assert.That(() => _calculator.AreaOfCircle(-5), Throws.ArgumentException); // radius = -5
-        }
-
-        [Test]
-        public void UnknownFunctionA_WhenGivenTest0_Result()
-        {
-            // Act
-            double result = _calculator.UnknownFunctionA(5, 5);
-            // Assert
-            Assert.That(result, Is.EqualTo(120));
-        }
-        [Test]
-        public void UnknownFunctionA_WhenGivenTest1_Result()
-        {
-            // Act
-            double result = _calculator.UnknownFunctionA(5, 4);
-            // Assert
-            Assert.That(result, Is.EqualTo(120));
-        }
-        [Test]
-        public void UnknownFunctionA_WhenGivenTest2_Result()
-        {
-            // Act
-            double result = _calculator.UnknownFunctionA(5, 3);
-            // Assert
-            Assert.That(result, Is.EqualTo(60));
-        }
-
-        [Test]
-        public void UnknownFunctionA_WhenGivenTest3_ResultThrowArgumnetException()
-        {
-            // Act
-            // Assert
-            Assert.That(() => _calculator.UnknownFunctionA(-4, 5), Throws.ArgumentException);
-        }
-        [Test]
-        public void UnknownFunctionA_WhenGivenTest4_ResultThrowArgumnetException()
-        {
-            // Act
-            // Assert
-            Assert.That(() => _calculator.UnknownFunctionA(4, 5), Throws.ArgumentException);
-        }
-
-        [Test]
-        public void UnknownFunctionB_WhenGivenTest0_Result()
-        {
-            // Act
-            double result = _calculator.UnknownFunctionB(5, 5);
-            // Assert
-            Assert.That(result, Is.EqualTo(1));
-        }
-        [Test]
-        public void UnknownFunctionB_WhenGivenTest1_Result()
-        {
-            // Act
-            double result = _calculator.UnknownFunctionB(5, 4);
-            // Assert
-            Assert.That(result, Is.EqualTo(5));
-        }
-        [Test]
-        public void UnknownFunctionB_WhenGivenTest2_Result()
-        {
-            // Act
-            double result = _calculator.UnknownFunctionB(5, 3);
-            // Assert
-            Assert.That(result, Is.EqualTo(10));
-        }
-        [Test]
-        public void UnknownFunctionB_WhenGivenTest3_ResultThrowArgumnetException()
-        {
-            // Act
-            // Assert
-            Assert.That(() => _calculator.UnknownFunctionB(-4, 5), Throws.ArgumentException);
-        }
-        [Test]
-        public void UnknownFunctionB_WhenGivenTest4_ResultThrowArgumnetException()
-        {
-            // Act
-            // Assert
-            Assert.That(() => _calculator.UnknownFunctionB(4, 5), Throws.ArgumentException);
-        }
-
     }
 }
-*/

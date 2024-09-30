@@ -6,6 +6,8 @@ class Program
     {
         bool endApp = false;
         Calculator _calculator = new Calculator();
+        FileReader fileReader = new FileReader();
+        
         Console.WriteLine("Console Calculator in C#\r");
         Console.WriteLine("------------------------\n");
 
@@ -41,12 +43,22 @@ class Program
             Console.WriteLine("\tc - Calculate Circle");
             Console.WriteLine("\tmtbf - Calculate MTBF");
             Console.WriteLine("\tavailability - Calculate Availability");
+            Console.WriteLine("\tmagic - Generate Magic Number from file");
             Console.Write("Your option? ");
             string op = Console.ReadLine();
 
             try
             {
-                result = _calculator.DoOperation(cleanNum1, cleanNum2, op);
+                if (op == "magic")
+                {
+                    // Call DoOperation for GenMagicNum and pass the FileReader
+                    result = _calculator.DoOperation(cleanNum1, cleanNum2, op, fileReader);
+                }
+                else
+                {
+                    result = _calculator.DoOperation(cleanNum1, cleanNum2, op);
+                }
+                
                 if (double.IsNaN(result))
                 {
                     Console.WriteLine("This operation will result in a mathematical error.\n");

@@ -5,7 +5,7 @@
         public Calculator() { }
 
         
-        public double DoOperation(double num1, double num2, string op)
+        public double DoOperation(double num1, double num2, string op, IFileReader fileReader = null)
         {
             double result = double.NaN; // Default value
             switch (op)
@@ -36,6 +36,9 @@
                     break;
                 case "availability":
                     result = CalculateAvailability(num1, num2); // Availability Calculation
+                    break;
+                case "magic":
+                    result = GenMagicNum(num1, fileReader);
                     break;
                 default:
                     break;
@@ -251,6 +254,29 @@
             {
                 result *= i;
             }
+            return result;
+        }
+        
+        // Lab 4
+        public double GenMagicNum(double input, IFileReader fileReader)
+        {
+            double result = 0;
+            int choice = Convert.ToInt16(input);
+            
+            //Dependency------------------------------
+            // FileReader getTheMagic = new FileReader();
+            //----------------------------------------
+            
+            string[] magicStrings = fileReader.Read("MagicNumbers.txt");
+            
+            // To check the contents of the txt file it is reading
+            Console.WriteLine("Magic numbers: " + string.Join(", ", magicStrings));
+            
+            if ((choice >= 0) && (choice < magicStrings.Length))
+            {
+                result = Convert.ToDouble(magicStrings[choice]);
+            }
+            result = (result > 0) ? (2 * result) : (-2 * result);
             return result;
         }
     }

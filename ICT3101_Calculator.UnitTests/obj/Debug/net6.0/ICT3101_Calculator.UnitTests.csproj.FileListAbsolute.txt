@@ -113,3 +113,4 @@
 /Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator.UnitTests/obj/Debug/net6.0/ICT3101_Calculator.UnitTests.genruntimeconfig.cache
 /Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator.UnitTests/obj/Debug/net6.0/ref/ICT3101_Calculator.UnitTests.dll
 /Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator.UnitTests/bin/Debug/net6.0/NuGet.Frameworks.dll
+/Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator.UnitTests/obj/Debug/net6.0/ICT3101_Calculator.UnitTests.sourcelink.json

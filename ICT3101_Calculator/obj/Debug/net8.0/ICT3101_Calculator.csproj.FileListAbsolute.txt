@@ -34,3 +34,4 @@
 /Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator/obj/Debug/net8.0/ICT3101_Calculator.pdb
 /Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator/obj/Debug/net8.0/ICT3101_Calculator.genruntimeconfig.cache
 /Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator/obj/Debug/net8.0/ref/ICT3101_Calculator.dll
+/Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator/obj/Debug/net8.0/ICT3101_Calculator.sourcelink.json
