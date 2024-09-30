@@ -1,4 +1,6 @@
-﻿namespace ICT3101_Calculator.UnitTests
+﻿using System.Runtime.InteropServices;
+
+namespace ICT3101_Calculator.UnitTests
 {
     public class CalculatorTests
     {
@@ -11,15 +13,26 @@
         {
             _calculator = new Calculator();
 
-            // Construct the path based on the OS using Path.DirectorySeparatorChar
+            // Determine platform and construct the path
             string projectRoot = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..");
-            string relativePath = Path.Combine(projectRoot, "ICT3101_Calculator", "MagicNumbers.txt");
+
+            // Use different paths depending on the environment
+            string relativePath;
+    
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                relativePath = Path.Combine(projectRoot, "ICT3101_Calculator", "MagicNumbers.txt");
+            }
+            else
+            {
+                relativePath = Path.Combine(projectRoot, "ICT3101_Calculator", "MagicNumbers.txt");
+            }
 
             // Resolve the absolute path
             originalPath = Path.GetFullPath(relativePath);
-
             backupPath = originalPath + ".bak";
 
+            // Ensure the file exists
             if (!File.Exists(originalPath))
             {
                 throw new FileNotFoundException("MagicNumbers.txt file is missing at " + originalPath);
@@ -31,6 +44,7 @@
                 File.Copy(originalPath, backupPath); // Backup the file if not already backed up
             }
         }
+
 
         [TearDown]
         public void TearDown()
