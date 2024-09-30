@@ -9,7 +9,6 @@
         [SetUp]
         public void Setup()
         {
-            // Arrange
             _calculator = new Calculator();
 
             // Construct the relative path to the MagicNumbers.txt file
