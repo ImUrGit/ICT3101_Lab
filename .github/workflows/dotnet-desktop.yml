@@ -78,9 +78,7 @@ jobs:
       uses: microsoft/setup-msbuild@v2
 
     - name: Ensure MagicNumbers.txt is copied
-      run: |
-        mkdir -p ICT3101_Calculator.UnitTests
-        cp ICT3101_Calculator/MagicNumbers.txt ICT3101_Calculator.UnitTests/
+      run: cp ICT3101_Calculator/MagicNumbers.txt ICT3101_Calculator.UnitTests/
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
