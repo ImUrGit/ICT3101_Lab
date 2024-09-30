@@ -11,14 +11,15 @@
         {
             _calculator = new Calculator();
 
-            // Construct the relative path to the MagicNumbers.txt file
-            string relativePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "ICT3101_Calculator", "MagicNumbers.txt");
+            // Construct the path based on the OS using Path.DirectorySeparatorChar
+            string projectRoot = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..");
+            string relativePath = Path.Combine(projectRoot, "ICT3101_Calculator", "MagicNumbers.txt");
 
-            // Resolve to the absolute path
+            // Resolve the absolute path
             originalPath = Path.GetFullPath(relativePath);
+
             backupPath = originalPath + ".bak";
 
-            // Check if the file exists, if not throw a meaningful exception
             if (!File.Exists(originalPath))
             {
                 throw new FileNotFoundException("MagicNumbers.txt file is missing at " + originalPath);
@@ -30,7 +31,6 @@
                 File.Copy(originalPath, backupPath); // Backup the file if not already backed up
             }
         }
-
 
         [TearDown]
         public void TearDown()
