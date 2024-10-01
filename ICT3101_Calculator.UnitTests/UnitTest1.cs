@@ -157,8 +157,6 @@ namespace ICT3101_Calculator.UnitTests
         */
 
         // Lab 4 Tests
-        // -------------------------------
-
         // Positive Test Case: Valid Input
         [Test]
         public void GenMagicNum_WithValidInput_ReturnsCorrectMagicNumber()
@@ -197,8 +195,7 @@ namespace ICT3101_Calculator.UnitTests
             File.Move(originalPath, backupPath);
             
             Assert.Throws<FileNotFoundException>(() => _calculator.GenMagicNum(1, fileReader));
-
-            // Restore the file after the test (Handled by TearDown)
+            
         }
 
         // Exceptional Case: Invalid Content in File
@@ -210,11 +207,8 @@ namespace ICT3101_Calculator.UnitTests
             // Write the invalid content to the file
             string invalidContent = "12\ninvalid\n3\n";
             File.WriteAllText(originalPath, invalidContent);
-
-            // Act & Assert
+            
             Assert.Throws<FormatException>(() => _calculator.GenMagicNum(1, fileReader));
-
-            // File is restored after the test by TearDown
         }
     }
 }

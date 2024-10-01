@@ -49,6 +49,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.72, )"
+            },
             "SpecFlow": {
               "target": "Package",
               "version": "[3.9.74, )"
@@ -87,6 +91,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.72, )"
+            },
             "SpecFlow": {
               "target": "Package",
               "version": "[3.9.74, )"

@@ -8,8 +8,7 @@ namespace ICT3101_Calculator
         {
             // Construct the path based on the OS using Path.DirectorySeparatorChar
             string projectRoot = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..");
-
-            // Use different paths depending on the environment
+            
             string relativePath;
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

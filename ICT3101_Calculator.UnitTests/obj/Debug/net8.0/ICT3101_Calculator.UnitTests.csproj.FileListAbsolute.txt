@@ -114,3 +114,8 @@
 /Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator.UnitTests/obj/Debug/net8.0/ref/ICT3101_Calculator.UnitTests.dll
 /Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator.UnitTests/bin/Debug/net8.0/NuGet.Frameworks.dll
 /Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator.UnitTests/obj/Debug/net8.0/ICT3101_Calculator.UnitTests.sourcelink.json
+/Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator.UnitTests/bin/Debug/net8.0/Castle.Core.dll
+/Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator.UnitTests/bin/Debug/net8.0/Moq.dll
+/Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator.UnitTests/bin/Debug/net8.0/System.Diagnostics.EventLog.dll
+/Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator.UnitTests/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Diagnostics.EventLog.Messages.dll
+/Users/alainpierre/Projects/ICT3101_Calculator/ICT3101_Calculator.UnitTests/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Diagnostics.EventLog.dll
